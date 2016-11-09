@@ -1,0 +1,22 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.yangzhiyan.mycctv.fragment.TVFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/timeline_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:text="@string/rbtv" />
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_below="@id/timeline_text"
+        android:layout_height="0.5dp"
+        android:background="@color/unselctedtext"/>
+
+</RelativeLayout>
