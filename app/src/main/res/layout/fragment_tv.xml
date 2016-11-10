@@ -1,6 +1,8 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context="com.yangzhiyan.mycctv.fragment.TVFragment">
 
@@ -12,11 +14,105 @@
         android:gravity="center"
         android:textSize="25sp"
         android:text="@string/rbtv" />
+
     <View
         android:id="@+id/line"
         android:layout_width="match_parent"
-        android:layout_below="@id/timeline_text"
         android:layout_height="0.5dp"
         android:background="@color/unselctedtext"/>
 
-</RelativeLayout>
+    <RelativeLayout
+        android:background="@mipmap/ic_listentv_background"
+        android:layout_width="match_parent"
+        android:layout_height="220dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:src="@mipmap/ic_listentv_logo"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/tv_see"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:src="@mipmap/ic_listentv_see"/>
+            <ImageView
+                android:id="@+id/tv_listen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_listentv_listen"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@android:color/white"
+                android:text="正在直播："
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_live"
+                android:text="新闻直播间"
+                android:textColor="@android:color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:padding="10dp"
+        android:background="@color/littlegray"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/tv_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="5dp">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
+                android:src="@mipmap/ic_tvplus_column_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:text="搜索栏目"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <com.yangzhiyan.mycctv.CustomWidget.MyListview
+        android:id="@+id/tv_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

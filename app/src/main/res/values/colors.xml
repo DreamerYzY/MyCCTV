@@ -7,4 +7,6 @@
     <color name="unselctedtext">#7F7F7F</color>
     <color name="selectedtext">#2A60B1</color>
     <color name="halfblack">#99000000</color>
+
+    <color name="littlegray">#EEE9E9</color>
 </resources>
