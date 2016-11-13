@@ -14,13 +14,13 @@ import java.util.List;
 
 public class NewsViewPagerAdapter extends FragmentPagerAdapter {
     private List<Fragment> fragmentList;
-    private List<News.DataBean> dataBeanList;
+    private String[] tabs;
 
     public NewsViewPagerAdapter(FragmentManager fm, List<Fragment> fragmentList,
-                                List<News.DataBean> dataBeanList) {
+                                String[] tabs) {
         super(fm);
         this.fragmentList = fragmentList;
-        this.dataBeanList = dataBeanList;
+        this.tabs = tabs;
     }
 
     @Override
@@ -35,6 +35,6 @@ public class NewsViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return fragmentList.get(position%fragmentList.size()).toString();
+        return tabs[position%tabs.length] ;
     }
 }

@@ -19,23 +19,11 @@
             android:layout_height="match_parent" />
 
         <TextView
-            android:id="@+id/timeline_text_time"
+            android:id="@+id/timeline_data"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:gravity="center"
-            android:text="2016年"
             android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-
-        <TextView
-            android:id="@+id/timeline_text_data"
-            android:layout_toLeftOf="@id/timeline_text_time"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:text="11月09日"
-            android:layout_marginRight="20dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 

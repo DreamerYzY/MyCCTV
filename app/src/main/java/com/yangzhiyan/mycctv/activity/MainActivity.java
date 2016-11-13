@@ -1,5 +1,6 @@
 package com.yangzhiyan.mycctv.activity;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +30,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         x.view().inject(this);
+        Drawable drawable = getResources().getDrawable(R.drawable.rbnews);
+        drawable.setBounds(0,0,90,100);
+        rbnews.setCompoundDrawables(null,drawable,null,null);
+
+        drawable = getResources().getDrawable(R.drawable.rbtimeline);
+        drawable.setBounds(0,0,90,100);
+        rbtimeline.setCompoundDrawables(null,drawable,null,null);
+
+        drawable = getResources().getDrawable(R.drawable.rbtv);
+        drawable.setBounds(0,0,90,100);
+        rbtv.setCompoundDrawables(null,drawable,null,null);
+
+        drawable = getResources().getDrawable(R.drawable.rbdiscover);
+        drawable.setBounds(0,0,90,100);
+        rbdiscover.setCompoundDrawables(null,drawable,null,null);
+
+        drawable = getResources().getDrawable(R.drawable.rbuser);
+        drawable.setBounds(0,0,90,100);
+        rbuser.setCompoundDrawables(null,drawable,null,null);
+
 
         getSupportFragmentManager().beginTransaction().replace(
                 R.id.myframelayout,new NewsFragment()

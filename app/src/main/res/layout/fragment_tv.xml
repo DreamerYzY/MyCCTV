@@ -110,7 +110,8 @@
 
     </LinearLayout>
 
-    <com.yangzhiyan.mycctv.CustomWidget.MyListview
+    <ListView
+        android:background="@android:color/white"
         android:id="@+id/tv_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

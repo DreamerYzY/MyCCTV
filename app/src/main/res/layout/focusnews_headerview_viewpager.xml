@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="245dp"/>
     <LinearLayout
-        android:id="@+id/news_lldots"
+        android:id="@+id/focusnews_lldots"
         android:layout_alignBottom="@id/focusnews_viewpager"
         android:layout_marginBottom="30dp"
         android:orientation="horizontal"
@@ -17,7 +17,7 @@
 
     </LinearLayout>
     <TextView
-        android:id="@+id/news_viewpager_text"
+        android:id="@+id/focusnews_viewpager_text"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:gravity="center"

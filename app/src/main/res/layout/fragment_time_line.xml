@@ -12,7 +12,6 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/timeline_text"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"
@@ -38,6 +37,7 @@
     <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/timeline_pulllistview"
         android:layout_below="@id/line"
+        android:divider="#00000000"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

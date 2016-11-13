@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.yangzhiyan.mycctv.CustomWidget.MyListview;
@@ -29,23 +30,27 @@ public class TVFragment extends Fragment implements View.OnClickListener {
     private ImageView tv_see;
     private ImageView tv_listen;
     private CardView tv_search;
-    private MyListview tv_list;
+    private ListView tv_list;
     private TvPlusListAdapter adapter;
     private List<TvPlus.DataBean.ColumnListBean> columnList;
     private String url = "http://m.news.cntv.cn/special/json/lm/list61/index.json";
+
+    private View view;
 
 
     public TVFragment() {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_tv, container, false);
-        tv_list = (MyListview) view.findViewById(R.id.tv_list);
+        if (view != null){
+            return view;
+        }
+        view = inflater.inflate(R.layout.fragment_tv, container, false);
+        tv_list = (ListView) view.findViewById(R.id.tv_list);
         tv_listen = (ImageView) view.findViewById(R.id.tv_listen);
         tv_see = (ImageView) view.findViewById(R.id.tv_see);
         tv_search = (CardView) view.findViewById(R.id.tv_search);

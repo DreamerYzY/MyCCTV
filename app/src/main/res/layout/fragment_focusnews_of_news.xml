@@ -1,13 +1,15 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context="com.yangzhiyan.mycctv.fragment.FocusnewsOfNewsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:background="@android:color/white"
+        android:id="@+id/focusnews_pulllistview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent"/>
 
-</FrameLayout>
+</RelativeLayout>

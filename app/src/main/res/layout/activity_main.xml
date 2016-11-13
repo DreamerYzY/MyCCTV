@@ -6,10 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.yangzhiyan.mycctv.activity.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/myframelayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
     <RadioGroup
         android:id="@+id/rgmain"
@@ -21,34 +17,37 @@
         <RadioButton
             android:id="@+id/rbnews"
             android:text="@string/rbnews"
-            android:drawableTop="@drawable/rbnews"
+            android:checked="true"
             style="@style/main_tabs_rg_rb" />
         <RadioButton
             android:id="@+id/rbtimeline"
             android:text="@string/rbtimeline"
-            android:drawableTop="@drawable/rbtimeline"
             style="@style/main_tabs_rg_rb" />
         <RadioButton
             android:id="@+id/rbtv"
             android:text="@string/rbtv"
-            android:drawableTop="@drawable/rbtv"
             style="@style/main_tabs_rg_rb" />
         <RadioButton
             android:id="@+id/rbdiscover"
             android:text="@string/rbdiscover"
-            android:drawableTop="@drawable/rbdiscover"
             style="@style/main_tabs_rg_rb" />
         <RadioButton
             android:id="@+id/rbuser"
             android:text="@string/rbuser"
-            android:drawableTop="@drawable/rbuser"
             style="@style/main_tabs_rg_rb" />
 
     </RadioGroup>
 
     <View
+        android:id="@+id/main_line"
         android:layout_width="match_parent"
         android:background="@color/unselctedtext"
         android:layout_height="1dp"
         android:layout_above="@id/rgmain"/>
+
+    <FrameLayout
+        android:id="@+id/myframelayout"
+        android:layout_above="@id/main_line"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </RelativeLayout>

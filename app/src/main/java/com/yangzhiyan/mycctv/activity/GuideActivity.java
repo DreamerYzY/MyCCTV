@@ -17,7 +17,7 @@ public class GuideActivity extends AppCompatActivity {
     private ViewPager guideViewPager;
     private List<ImageView> imageList;
     private GuidePageAdapter guideAdapter;
-    private int[] icons = {R.mipmap.launch_0,R.mipmap.launch_1,R.mipmap.launch_2};
+    private int[] icons = {R.mipmap.launch_0,R.mipmap.launch_1,R.mipmap.launch_2,R.mipmap.launch_3};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
