@@ -20,7 +20,11 @@ public class FocusnewsViewpagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return imageViewList.size();
+        if (imageViewList.size()!=0){
+
+            return imageViewList.size();
+        }
+        return 0;
     }
 
     @Override

@@ -32,7 +32,10 @@ public class TimelineListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return itemList.size();
+        if (itemList.size()!=0){
+            return itemList.size();
+        }
+        return 0;
     }
 
     @Override
