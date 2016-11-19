@@ -11,6 +11,7 @@
         android:layout_height="80dp">
         <ImageView
             android:id="@+id/classtopic_pic"
+            android:src="@drawable/bg_default_item"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <ImageView

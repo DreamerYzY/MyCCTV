@@ -57,6 +57,7 @@ public class NewsFragment extends Fragment {
 
     private void getTab() {
         RequestParams requestParams = new RequestParams(dataurl);
+
         x.http().get(requestParams,
                 new Callback.CommonCallback<String>() {
                     @Override
@@ -100,56 +101,63 @@ public class NewsFragment extends Fragment {
         LiveOfNewsFragment liveOfNewsFragment = new LiveOfNewsFragment();
         fragmentList.add(liveOfNewsFragment);
 
-        FinanceOfNewsFragment financeOfNewsFragment = new FinanceOfNewsFragment();
-        fragmentList.add(financeOfNewsFragment);
-
-        EarthquickOfNewsFragment earthquickOfNewsFragment = new EarthquickOfNewsFragment();
-        fragmentList.add(earthquickOfNewsFragment);
-
         OtherOfNewsFragment otherOfNewsFragmentV = new OtherOfNewsFragment();
+        bundle = new Bundle();
+        bundle.putString("id","TDAT1462415765890287");
+        otherOfNewsFragmentV.setArguments(bundle);
         fragmentList.add(otherOfNewsFragmentV);
 
         OtherOfNewsFragment otherOfNewsFragmentNightread = new OtherOfNewsFragment();
         bundle = new Bundle();
-        bundle.putString("url", news.data.get(3).url);
-        bundle.putInt("id", 3);
+        bundle.putString("id","TDAT1456119001862969");
+        otherOfNewsFragmentNightread.setArguments(bundle);
         fragmentList.add(otherOfNewsFragmentNightread);
 
         OtherOfNewsFragment otherOfNewsFragmentInternational = new OtherOfNewsFragment();
         bundle = new Bundle();
-        bundle.putString("url", news.data.get(4).url);
-        bundle.putInt("id", 4);
+        bundle.putString("id","TDAT1463463402222747");
+        otherOfNewsFragmentInternational.setArguments(bundle);
         fragmentList.add(otherOfNewsFragmentInternational);
 
         OtherOfNewsFragment otherOfNewsFragmentPE = new OtherOfNewsFragment();
         bundle = new Bundle();
-        bundle.putString("url", news.data.get(5).url);
-        bundle.putInt("id", 5);
+        bundle.putString("id","TDAT1383126274316527");
+        otherOfNewsFragmentPE.setArguments(bundle);
         fragmentList.add(otherOfNewsFragmentPE);
 
         OtherOfNewsFragment otherOfNewsFragmentTaiwan = new OtherOfNewsFragment();
         bundle = new Bundle();
-        bundle.putString("url", news.data.get(6).url);
-        bundle.putInt("id", 6);
+        bundle.putString("id","TDAT1451446462471933");
+        otherOfNewsFragmentTaiwan.setArguments(bundle);
         fragmentList.add(otherOfNewsFragmentTaiwan);
 
         OtherOfNewsFragment otherOfNewsFragmentArmy = new OtherOfNewsFragment();
         bundle = new Bundle();
-        bundle.putString("url", news.data.get(7).url);
-        bundle.putInt("id", 7);
+        bundle.putString("id","TDAT1383125722766236");
+        otherOfNewsFragmentArmy.setArguments(bundle);
         fragmentList.add(otherOfNewsFragmentArmy);
 
         OtherOfNewsFragment otherOfNewsFragmentComment = new OtherOfNewsFragment();
         bundle = new Bundle();
-        bundle.putString("url", news.data.get(8).url);
-        bundle.putInt("id", 8);
+        bundle.putString("id","TDAT1452495392395454");
+        otherOfNewsFragmentComment.setArguments(bundle);
         fragmentList.add(otherOfNewsFragmentComment);
+
+        OtherOfNewsFragment otherOfNewsFragmentFinance = new OtherOfNewsFragment();
+        bundle = new Bundle();
+        bundle.putString("id","TDAT1383126577835657");
+        otherOfNewsFragmentFinance.setArguments(bundle);
+        fragmentList.add(otherOfNewsFragmentFinance);
 
         OtherOfNewsFragment otherOfNewsFragmentSocial = new OtherOfNewsFragment();
         bundle = new Bundle();
-        bundle.putString("url", news.data.get(10).url);
-        bundle.putInt("id", 10);
+        bundle.putString("id","TDAT1383126850500788");
+        otherOfNewsFragmentSocial.setArguments(bundle);
         fragmentList.add(otherOfNewsFragmentSocial);
+
+        EarthquickOfNewsFragment earthquickOfNewsFragment = new EarthquickOfNewsFragment();
+        fragmentList.add(earthquickOfNewsFragment);
+
 
         adapter=new NewsViewPagerAdapter(getChildFragmentManager(),fragmentList,tabs);
         news_viewpager.setAdapter(adapter);

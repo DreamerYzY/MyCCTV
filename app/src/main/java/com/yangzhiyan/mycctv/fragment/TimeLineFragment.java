@@ -1,12 +1,14 @@
 package com.yangzhiyan.mycctv.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -14,6 +16,7 @@ import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.yangzhiyan.mycctv.R;
+import com.yangzhiyan.mycctv.activity.FocusItemArticleActivity;
 import com.yangzhiyan.mycctv.adapter.TimelineListAdapter;
 import com.yangzhiyan.mycctv.been.Timeline;
 
@@ -46,7 +49,7 @@ public class TimeLineFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         if (view != null){
@@ -62,6 +65,11 @@ public class TimeLineFragment extends Fragment {
         SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
         String time = sd.format(new Date(System.currentTimeMillis()));
         timeline_data.setText(time);
+
+        itemList = new ArrayList<>();
+        adapter = new TimelineListAdapter(getContext(),itemList);
+        timeline_pulllistview.setAdapter(adapter);
+
 
         timeline_pulllistview.setMode(PullToRefreshBase.Mode.BOTH);
         timeline_pulllistview.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
@@ -90,12 +98,9 @@ public class TimeLineFragment extends Fragment {
                 new Callback.CommonCallback<String>() {
                     @Override
                     public void onSuccess(String result) {
-                        itemList = new ArrayList<>();
                         Gson gson = new Gson();
                         timeline = gson.fromJson(result,Timeline.class);
-                        itemList.addAll(timeline.itemList);
-                        adapter = new TimelineListAdapter(getContext(),itemList);
-                        timeline_pulllistview.setAdapter(adapter);
+                        bindData(timeline);
                     }
 
                     @Override
@@ -110,12 +115,29 @@ public class TimeLineFragment extends Fragment {
 
                     @Override
                     public void onFinished() {
-
                     }
                 });
+
+    }
+
+    private void bindData(Timeline timeline1) {
+        timeline = timeline1;
+        itemList.addAll(timeline.itemList);
+        adapter.notifyDataSetChanged();
         if (timeline_pulllistview.isRefreshing()){
             timeline_pulllistview.onRefreshComplete();
         }
+
+        timeline_pulllistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent();
+                intent.setClass(getContext(), FocusItemArticleActivity.class);
+                intent.putExtra("detailUrl",itemList.get(position-2).detailUrl);
+                intent.putExtra("type",itemList.get(position-2).itemType);
+                startActivity(intent);
+            }
+        });
     }
 
 }

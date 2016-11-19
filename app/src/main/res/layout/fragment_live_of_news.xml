@@ -2,12 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context="com.yangzhiyan.mycctv.fragment.LiveOfNewsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/live_pulllistview"
+        android:background="@android:color/white"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

@@ -63,16 +63,22 @@ public class TimelineListAdapter extends BaseAdapter {
         holder.timeline_text.setText(listBean.itemTitle);
         String imgurl = listBean.itemImage.imgUrl1;
         if (!imgurl.equals("")){
+            holder.timeline_pic.setVisibility(View.VISIBLE);
             holder.timeline_pic.setScaleType(ImageView.ScaleType.FIT_XY);
             Picasso.with(context).load(imgurl).into(holder.timeline_pic);
-
+        }else {
+            holder.timeline_pic.setVisibility(View.GONE);
         }
         long currenttime = System.currentTimeMillis();
         long newstime = listBean.pubDate;
         long time = currenttime-newstime;
         long min = time/60000;
         if (min<60){
-            holder.timeline_time.setText((int)min+"分钟前");
+            if (min<1){
+                holder.timeline_time.setText("刚刚");
+            }else {
+                holder.timeline_time.setText((int) min + "分钟前");
+            }
         }else if (min/60<=24){
             holder.timeline_time.setText((int)(min/60)+"小时前");
         }else {

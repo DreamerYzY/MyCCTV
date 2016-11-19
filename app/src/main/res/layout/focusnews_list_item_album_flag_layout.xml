@@ -18,13 +18,13 @@
         android:orientation="horizontal"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="80dp">
 
         <ImageView
             android:id="@+id/album_pic1"
             android:layout_weight="1"
             android:padding="5dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/bg_default_item"
             android:layout_width="0dp"
             android:layout_height="match_parent" />
 
@@ -32,7 +32,7 @@
             android:id="@+id/album_pic2"
             android:layout_weight="1"
             android:padding="5dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/bg_default_item"
             android:layout_width="0dp"
             android:layout_height="match_parent" />
 
@@ -40,7 +40,7 @@
             android:id="@+id/album_pic3"
             android:layout_weight="1"
             android:padding="5dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/bg_default_item"
             android:layout_width="0dp"
             android:layout_height="match_parent" />
 

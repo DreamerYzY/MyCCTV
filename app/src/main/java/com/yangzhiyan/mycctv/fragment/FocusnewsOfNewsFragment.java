@@ -1,6 +1,7 @@
 package com.yangzhiyan.mycctv.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -18,6 +20,9 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.squareup.picasso.Picasso;
 import com.yangzhiyan.mycctv.R;
+import com.yangzhiyan.mycctv.activity.ClasstopicFlagActivity;
+import com.yangzhiyan.mycctv.activity.FocusItemArticleActivity;
+import com.yangzhiyan.mycctv.activity.ItemItFlagActivity;
 import com.yangzhiyan.mycctv.adapter.FocusnewsListAdapter;
 import com.yangzhiyan.mycctv.adapter.FocusnewsViewpagerAdapter;
 import com.yangzhiyan.mycctv.been.Focusnews;
@@ -54,6 +59,8 @@ public class FocusnewsOfNewsFragment extends Fragment {
 
     private String url = "http://hot.news.cntv.cn/index.php?controller=list&action=getHandData" +
             "InfoNew&handdata_id=TDAT1372928688333145&n2=20&toutuNum=3";
+    private String url2;
+
     private int page = 1;
     public static int n1 = 3;
 
@@ -65,7 +72,7 @@ public class FocusnewsOfNewsFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         if (view != null){
@@ -116,6 +123,7 @@ public class FocusnewsOfNewsFragment extends Fragment {
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 focusnews_lldots.removeAllViews();
                 itemListBeen.clear();
+                imageViewList.clear();
                 page = 1;
                 n1 = 3;
                 getData();
@@ -124,10 +132,45 @@ public class FocusnewsOfNewsFragment extends Fragment {
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-                url = "http://hot.news.cntv.cn/index.php?controller=list&action=getHandDataListInfo" +
+                url2 = "http://hot.news.cntv.cn/index.php?controller=list&action=getHandDataListInfo" +
                         "New&handdata_id=TDAT1372928688333145&n2=20&toutuNum=3";
                 page++;
                 getNewData();
+
+            }
+        });
+        focusnews_pulllistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            Intent intent;
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Focusnews.DataBean.ItemListBean itemListBean1 = itemListBeen.get(position-2);
+                Log.i("Tag",position-2+"");
+                switch (itemListBean1.itemType){
+                    case "it_flag":
+                        intent = new Intent();
+                        intent.setClass(getContext(), ItemItFlagActivity.class);
+                        intent.putExtra("detailUrl",itemListBean1.detailUrl);
+                        Log.i("Tag","detailUrl is "+itemListBean1.detailUrl );
+                        startActivity(intent);
+                        break;
+                    case "classtopic_flag":
+                        intent = new Intent();
+                        intent.setClass(getContext(), ClasstopicFlagActivity.class);
+                        intent.putExtra("detailUrl",itemListBean1.detailUrl);
+                        Log.i("Tag","detailUrl is "+itemListBean1.detailUrl );
+                        startActivity(intent);
+                        break;
+                    case "vod_flag":
+                        break;
+                    default:
+                        intent = new Intent();
+                        intent.setClass(getContext(), FocusItemArticleActivity.class);
+                        intent.putExtra("detailUrl",itemListBean1.detailUrl);
+                        intent.putExtra("type",itemListBean1.itemType);
+                        Log.i("Tag","detailUrl is "+itemListBean1.detailUrl );
+                        startActivity(intent);
+                        break;
+                }
             }
         });
         return view;
@@ -184,11 +227,45 @@ public class FocusnewsOfNewsFragment extends Fragment {
 
             String imgurl = focusnews.data.bigImg.get(i).itemImage;
             ImageView imageView = new ImageView(getContext());
-            Picasso.with(getContext()).load(imgurl).into(imageView);
+            if (!imgurl.isEmpty()){
+                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                Picasso.with(getContext()).load(imgurl).into(imageView);
+            }
+            final int finalI = i;
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    switch (focusnews.data.bigImg.get(finalI).itemType){
+                        case "it_flag":
+                            Intent intent1 = new Intent();
+                            intent1.setClass(getContext(), ItemItFlagActivity.class);
+                            intent1.putExtra("detailUrl",focusnews.data.bigImg.get(finalI).detailUrl);
+                            startActivity(intent1);
+                            break;
+                        case "classtopic_flag":
+                            Intent intent2 = new Intent();
+                            intent2.setClass(getContext(), ClasstopicFlagActivity.class);
+                            intent2.putExtra("detailUrl",focusnews.data.bigImg.get(finalI).detailUrl);
+                            startActivity(intent2);
+                            break;
+                        case "void_flag":
+                            break;
+                        default:
+                            Intent intent = new Intent();
+                            intent.setClass(getContext(), FocusItemArticleActivity.class);
+                            intent.putExtra("detailUrl",focusnews.data.bigImg.get(finalI).detailUrl);
+                            intent.putExtra("type",focusnews.data.bigImg.get(finalI).itemType);
+                            startActivity(intent);
+                            break;
+                    }
+                }
+            });
+
             imageViewList.add(imageView);
         }
-        viewpagerAdapter.notifyDataSetChanged();
         dots[0].setEnabled(false);
+        viewpagerAdapter.notifyDataSetChanged();
+        focusnews_viewpager.setCurrentItem(0);
 
 
         if (focusnews_pulllistview.isRefreshing()) {
@@ -198,7 +275,7 @@ public class FocusnewsOfNewsFragment extends Fragment {
     }
 
     private void getNewData() {
-        RequestParams requestParams = new RequestParams(url);
+        RequestParams requestParams = new RequestParams(url2);
         requestParams.addQueryStringParameter("p", page + "");
 
         x.http().get(requestParams,
@@ -215,6 +292,7 @@ public class FocusnewsOfNewsFragment extends Fragment {
                                         new Focusnews.DataBean.ItemListBean();
                                 JSONObject jdatas = jitemlist.optJSONObject(i);
                                 listbeen.itemID = jdatas.optString("itemID");
+                                listbeen.detailUrl = jdatas.optString("detailUrl");
                                 listbeen.itemType = jdatas.optString("itemType");
                                 listbeen.itemTitle = jdatas.optString("itemTitle");
                                 JSONObject jurls = jdatas.optJSONObject("itemImage");
