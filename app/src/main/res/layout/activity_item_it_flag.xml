@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_item_it_flag"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.yangzhiyan.mycctv.activity.ItemItFlagActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="210dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <VideoView
+                android:id="@+id/itflag_video"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+            <RelativeLayout
+                android:id="@+id/itflag_container_other"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/itflag_pic"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:id="@+id/itflag_play"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/icon_playing_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/itflag_title"
+                    android:padding="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#99000000"
+                    android:maxLines="1"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:background="#99000000"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/item_return"
+                android:src="@mipmap/icon_ad_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/item_share"
+                android:src="@mipmap/icon_detail_share_night"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:padding="10dp"
+        android:gravity="center"
+        android:text="直播"
+        android:textSize="18sp"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <View
+        android:background="@color/unselctedtext"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_height="0.5dp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:background="@android:color/white"
+        android:id="@+id/itflag_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

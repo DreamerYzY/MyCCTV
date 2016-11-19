@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_focus_item"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.yangzhiyan.mycctv.activity.FocusItemArticleActivity">
+
+    <RelativeLayout
+        android:id="@+id/item_rl"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/item_return"
+            android:src="@mipmap/base_header_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/item_share"
+            android:src="@mipmap/icon_detail_share"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <WebView
+        android:id="@+id/focus_item_default"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:id="@+id/item_ll"
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <EditText
+            android:background="@android:color/white"
+            android:layout_margin="10dp"
+            android:hint="说点什么吧"
+            android:id="@+id/item_comment"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="35dp" />
+
+        <LinearLayout
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/see_comment"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:src="@mipmap/icon_underlying_chat"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/collect"
+                android:src="@mipmap/icon_fav"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/setting"
+                android:src="@mipmap/icon_menu_more"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
