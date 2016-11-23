@@ -10,10 +10,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.sina.weibo.sdk.api.TextObject;
+import com.sina.weibo.sdk.api.WeiboMultiMessage;
+import com.sina.weibo.sdk.api.share.BaseResponse;
+import com.sina.weibo.sdk.api.share.IWeiboHandler;
+import com.sina.weibo.sdk.api.share.IWeiboShareAPI;
+import com.sina.weibo.sdk.api.share.SendMultiMessageToWeiboRequest;
+import com.sina.weibo.sdk.api.share.WeiboShareSDK;
+import com.sina.weibo.sdk.constant.WBConstants;
 import com.squareup.picasso.Picasso;
 import com.yangzhiyan.mycctv.R;
 import com.yangzhiyan.mycctv.adapter.ItemItFlagRecyclerviewAdapter;
 import com.yangzhiyan.mycctv.been.ItemItFlagBean;
+import com.yangzhiyan.mycctv.interfaces.Constants;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -35,6 +44,9 @@ public class ItemItFlagActivity extends AppCompatActivity {
     private ItemItFlagBean itemItFlagBean;
     private ItemItFlagRecyclerviewAdapter adapter;
 
+    private IWeiboShareAPI iWeiboShareAPI;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +55,7 @@ public class ItemItFlagActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         url = intent.getStringExtra("detailUrl");
+        iWeiboShareAPI = WeiboShareSDK.createWeiboAPI(this, Constants.APP_KEY);
 
         getData();
 
@@ -55,6 +68,17 @@ public class ItemItFlagActivity extends AppCompatActivity {
                 ItemItFlagActivity.this.finish();
                 break;
             case R.id.item_share:
+
+                WeiboMultiMessage multiMessage = new WeiboMultiMessage();
+
+                TextObject textObject = new TextObject();
+                textObject.text = "我分享了一个图片"+itemItFlagBean.data.liveList.get(0).liveImage;
+                multiMessage.textObject = textObject;
+
+                SendMultiMessageToWeiboRequest request = new SendMultiMessageToWeiboRequest();
+                request.transaction = String.valueOf(System.currentTimeMillis());
+                request.multiMessage = multiMessage;
+                iWeiboShareAPI.sendRequest(this,request);
                 break;
             case R.id.itflag_play:
                 break;
@@ -96,6 +120,7 @@ public class ItemItFlagActivity extends AppCompatActivity {
         itflag_text.setText(itemItFlagBean.data.liveList.get(0).liveTitle);
         String imgurl = itemItFlagBean.data.liveList.get(0).liveImage;
         if (!imgurl.isEmpty()){
+            itflag_pic.setScaleType(ImageView.ScaleType.FIT_XY);
             Picasso.with(this).load(imgurl).into(itflag_pic);
         }
 
@@ -105,4 +130,25 @@ public class ItemItFlagActivity extends AppCompatActivity {
         itflag_recycleView.setLayoutManager(layoutManager);
         itflag_recycleView.setAdapter(adapter);
     }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        iWeiboShareAPI.handleWeiboResponse(intent,response);
+    }
+
+    private IWeiboHandler.Response response = new IWeiboHandler.Response() {
+        @Override
+        public void onResponse(BaseResponse baseResponse) {
+
+            switch (baseResponse.errCode) {
+                case WBConstants.ErrorCode.ERR_OK:
+                    break;
+                case WBConstants.ErrorCode.ERR_CANCEL:
+                    break;
+                case WBConstants.ErrorCode.ERR_FAIL:
+                    break;
+            }
+        }
+    };
 }

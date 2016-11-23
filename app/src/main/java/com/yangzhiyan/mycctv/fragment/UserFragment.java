@@ -1,6 +1,7 @@
 package com.yangzhiyan.mycctv.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -13,7 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
 import com.yangzhiyan.mycctv.R;
+import com.yangzhiyan.mycctv.activity.LoginActivity;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -54,8 +57,8 @@ public class UserFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                         Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_user,container,false);
         x.view().inject(this,view);
 
@@ -112,6 +115,24 @@ public class UserFragment extends Fragment {
             user_linearlayout.addView(itemview);
         }
 
+        user_head.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getContext(), LoginActivity.class);
+                startActivityForResult(intent,20);
+            }
+        });
         return view;
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 20 && resultCode == 30){
+            String nickname = data.getStringExtra("nickname");
+            user_login.setText(nickname);
+            user_head.setScaleType(ImageView.ScaleType.FIT_XY);
+            Picasso.with(getContext()).load(data.getStringExtra("imgurl")).into(user_head);
+        }
     }
 }

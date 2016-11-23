@@ -11,11 +11,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.sina.weibo.sdk.api.TextObject;
+import com.sina.weibo.sdk.api.WeiboMultiMessage;
+import com.sina.weibo.sdk.api.share.BaseResponse;
+import com.sina.weibo.sdk.api.share.IWeiboHandler;
+import com.sina.weibo.sdk.api.share.IWeiboShareAPI;
+import com.sina.weibo.sdk.api.share.SendMultiMessageToWeiboRequest;
+import com.sina.weibo.sdk.api.share.WeiboShareSDK;
+import com.sina.weibo.sdk.constant.WBConstants;
 import com.squareup.picasso.Picasso;
 import com.yangzhiyan.mycctv.CustomWidget.MyListview;
 import com.yangzhiyan.mycctv.R;
 import com.yangzhiyan.mycctv.adapter.ClasstopicListviewAdapter;
 import com.yangzhiyan.mycctv.been.ClasstopicFlagBean;
+import com.yangzhiyan.mycctv.interfaces.Constants;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -40,11 +49,14 @@ public class ClasstopicFlagActivity extends AppCompatActivity {
     private Button classtopic_listview_more;
     private ClasstopicListviewAdapter adapter;
 
+    private IWeiboShareAPI iWeiboShareAPI;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classtopic_flag);
         x.view().inject(this);
+        iWeiboShareAPI = WeiboShareSDK.createWeiboAPI(this, Constants.APP_KEY);
 
         getData();
     }
@@ -55,6 +67,18 @@ public class ClasstopicFlagActivity extends AppCompatActivity {
                 ClasstopicFlagActivity.this.finish();
                 break;
             case R.id.item_share:
+                WeiboMultiMessage multiMessage = new WeiboMultiMessage();
+
+                TextObject textObject = new TextObject();
+                textObject.text = "我分享了一个链接"+'\n'
+                        +classtopicFlag.data.topicList.get(0).list.get(0).detailUrl;
+                multiMessage.textObject = textObject;
+
+                SendMultiMessageToWeiboRequest request = new SendMultiMessageToWeiboRequest();
+                request.transaction = String.valueOf(System.currentTimeMillis());
+                request.multiMessage = multiMessage;
+                iWeiboShareAPI.sendRequest(this,request);
+
                 break;
         }
     }
@@ -120,4 +144,25 @@ public class ClasstopicFlagActivity extends AppCompatActivity {
             classtopic_ll.addView(listview);
         }
     }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        iWeiboShareAPI.handleWeiboResponse(intent,response);
+    }
+
+    private IWeiboHandler.Response response = new IWeiboHandler.Response() {
+        @Override
+        public void onResponse(BaseResponse baseResponse) {
+
+            switch (baseResponse.errCode) {
+                case WBConstants.ErrorCode.ERR_OK:
+                    break;
+                case WBConstants.ErrorCode.ERR_CANCEL:
+                    break;
+                case WBConstants.ErrorCode.ERR_FAIL:
+                    break;
+            }
+        }
+    };
 }

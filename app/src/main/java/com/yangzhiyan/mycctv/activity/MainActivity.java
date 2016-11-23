@@ -31,23 +31,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         x.view().inject(this);
         Drawable drawable = getResources().getDrawable(R.drawable.rbnews);
-        drawable.setBounds(0,0,90,100);
+        drawable.setBounds(0,0,90,80);
         rbnews.setCompoundDrawables(null,drawable,null,null);
 
         drawable = getResources().getDrawable(R.drawable.rbtimeline);
-        drawable.setBounds(0,0,90,100);
+        drawable.setBounds(0,0,90,80);
         rbtimeline.setCompoundDrawables(null,drawable,null,null);
 
         drawable = getResources().getDrawable(R.drawable.rbtv);
-        drawable.setBounds(0,0,90,100);
+        drawable.setBounds(0,0,90,80);
         rbtv.setCompoundDrawables(null,drawable,null,null);
 
         drawable = getResources().getDrawable(R.drawable.rbdiscover);
-        drawable.setBounds(0,0,90,100);
+        drawable.setBounds(0,0,90,80);
         rbdiscover.setCompoundDrawables(null,drawable,null,null);
 
         drawable = getResources().getDrawable(R.drawable.rbuser);
-        drawable.setBounds(0,0,90,100);
+        drawable.setBounds(0,0,90,80);
         rbuser.setCompoundDrawables(null,drawable,null,null);
 
 

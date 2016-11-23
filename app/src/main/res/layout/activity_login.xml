@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.yangzhiyan.mycctv.activity.LoginActivity">
+
+    <RelativeLayout
+        android:id="@+id/item_rl"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/iv_return"
+            android:src="@mipmap/base_header_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="登录"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_register"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="注册"
+            android:textSize="18sp"
+            android:textColor="@color/selectedtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/login_no"
+            android:layout_marginTop="30dp"
+            android:padding="10dp"
+            android:hint="请输入手机号"
+
+            android:background="@drawable/edittext_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/login_pass"
+            android:layout_marginTop="30dp"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:hint="请输入密码"
+            android:background="@drawable/edittext_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageButton
+            android:id="@+id/btn_login"
+            android:layout_marginTop="30dp"
+            android:clickable="false"
+            android:background="@mipmap/deng_lu2"
+            android:layout_width="match_parent"
+            android:layout_height="45dp" />
+
+        <TextView
+            android:id="@+id/fogetpass"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:gravity="end"
+            android:text="忘记密码？"
+            android:textColor="@color/selectedtext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="其他登录方式"/>
+
+        <RelativeLayout
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/weibo_logo"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:src="@mipmap/logo_sina_small"
+                />
+
+            <TextView
+                android:layout_below="@id/weibo_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="新浪微博"/>
+
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

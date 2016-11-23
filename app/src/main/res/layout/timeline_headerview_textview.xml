@@ -5,11 +5,11 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:paddingRight="10dp"
         android:paddingLeft="10dp"
-        android:background="@color/unselctedtext"
+        android:paddingRight="10dp"
+        android:background="@mipmap/ic_timeline_title_background"
         android:layout_width="match_parent"
-        android:layout_height="25dp">
+        android:layout_height="30dp">
         <TextView
             android:textColor="@android:color/white"
             android:textSize="18sp"
