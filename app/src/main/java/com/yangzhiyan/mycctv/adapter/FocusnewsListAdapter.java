@@ -57,7 +57,7 @@ public class FocusnewsListAdapter extends BaseAdapter {
 
     @Override
     public int getViewTypeCount() {
-        return 4;
+        return 3;
     }
 
     @Override
@@ -65,17 +65,17 @@ public class FocusnewsListAdapter extends BaseAdapter {
         String type = itemList.get(position).itemType;
         int result = 8;
         switch (type){
-            case "classtopic_flag":case "it_flag":
+            case "classtopic_flag":case "it_flag":case "album_flag":
                 result = 0;
                 break;
-            case "album_flag":
+//            case "album_flag":
+//                result = 1;
+//                break;
+            case "vod_flag":
                 result = 1;
                 break;
-            case "vod_flag":
-                result = 2;
-                break;
             default:
-                result = 3;
+                result = 2;
                 break;
         }
         return result;
@@ -89,24 +89,17 @@ public class FocusnewsListAdapter extends BaseAdapter {
 
         ViewHolder1 holder1 = null;
         ViewHolder2 holder2 = null;
-        ViewHolder3 holder3 = null;
+//        ViewHolder3 holder3 = null;
         holder4 = null;
 
         if (convertView == null){
             switch (type){
-                case "classtopic_flag":case "it_flag":
+                case "classtopic_flag":case "it_flag":case "album_flag":
                     convertView = LayoutInflater.from(context).inflate(
                             R.layout.focusnews_list_item_classtopic_flag_layout,null
                     );
                     holder2 = new ViewHolder2(convertView);
                     convertView.setTag(holder2);
-                    break;
-                case "album_flag":
-                    convertView = LayoutInflater.from(context).inflate(
-                            R.layout.focusnews_list_item_album_flag_layout,null
-                    );
-                    holder3 = new ViewHolder3(convertView);
-                    convertView.setTag(holder3);
                     break;
                 case "vod_flag":
                     convertView = LayoutInflater.from(context).inflate(
@@ -125,11 +118,8 @@ public class FocusnewsListAdapter extends BaseAdapter {
             }
         }else {
             switch (type){
-                case "classtopic_flag":case "it_flag":
+                case "classtopic_flag":case "it_flag":case "album_flag":
                     holder2 = (ViewHolder2) convertView.getTag();
-                    break;
-                case "album_flag":
-                    holder3 = (ViewHolder3) convertView.getTag();
                     break;
                 case "vod_flag":
                     holder4 = (ViewHolder4) convertView.getTag();
@@ -140,11 +130,13 @@ public class FocusnewsListAdapter extends BaseAdapter {
             }
         }
         switch (type){
-            case "classtopic_flag":case "it_flag":
+            case "classtopic_flag":case "it_flag":case "album_flag":
                 if (type.equals("classtopic_flag")){
                     holder2.pic_type.setImageResource(R.mipmap.zhuan_ti);
-                }else {
+                }else if (type.equals("it_flag")){
                     holder2.pic_type.setImageResource(R.mipmap.live);
+                }else {
+                    holder2.pic_type.setImageResource(R.mipmap.pic);
                 }
                 holder2.classtopic_title.setText(itemListBean.itemTitle);
                 imgurl = itemListBean.itemImage.imgUrl1;
@@ -154,27 +146,27 @@ public class FocusnewsListAdapter extends BaseAdapter {
                     Picasso.with(context).load(imgurl).into(holder2.classtopic_pic);
                 }
                 break;
-            case "album_flag":
-                holder3.album_text.setText(itemListBean.itemTitle);
-                imgurl = itemListBean.itemImage.imgUrl1;
-                if (!imgurl.isEmpty()){
-                    holder3.album_pic1.setScaleType(ImageView.ScaleType.FIT_XY);
-                    Picasso.with(context).load(imgurl).into(holder3.album_pic1);
-                }
-
-                String imgurl2 = itemListBean.itemImage.imgUrl2;
-                if (!imgurl2.isEmpty()){
-
-                    holder3.album_pic2.setScaleType(ImageView.ScaleType.FIT_XY);
-                    Picasso.with(context).load(imgurl2).into(holder3.album_pic2);
-                }
-                String imgurl3 = itemListBean.itemImage.imgUrl3;
-                if (!imgurl3.isEmpty()){
-
-                    holder3.album_pic3.setScaleType(ImageView.ScaleType.FIT_XY);
-                    Picasso.with(context).load(imgurl3).into(holder3.album_pic3);
-                }
-                break;
+//            case "album_flag":
+//                holder3.album_text.setText(itemListBean.itemTitle);
+//                imgurl = itemListBean.itemImage.imgUrl1;
+//                if (!imgurl.isEmpty()){
+//                    holder3.album_pic1.setScaleType(ImageView.ScaleType.FIT_XY);
+//                    Picasso.with(context).load(imgurl).into(holder3.album_pic1);
+//                }
+//
+//                String imgurl2 = itemListBean.itemImage.imgUrl2;
+//                if (!imgurl2.isEmpty()){
+//
+//                    holder3.album_pic2.setScaleType(ImageView.ScaleType.FIT_XY);
+//                    Picasso.with(context).load(imgurl2).into(holder3.album_pic2);
+//                }
+//                String imgurl3 = itemListBean.itemImage.imgUrl3;
+//                if (!imgurl3.isEmpty()){
+//
+//                    holder3.album_pic3.setScaleType(ImageView.ScaleType.FIT_XY);
+//                    Picasso.with(context).load(imgurl3).into(holder3.album_pic3);
+//                }
+//                break;
             case "vod_flag":
                 imgurl = itemListBean.itemImage.imgUrl1;
                 if (!imgurl.isEmpty()){
@@ -240,20 +232,20 @@ public class FocusnewsListAdapter extends BaseAdapter {
         }
     }
 
-    private class ViewHolder3{
-        @ViewInject(R.id.album_text)
-        TextView album_text;
-        @ViewInject(R.id.album_pic1)
-        ImageView album_pic1;
-        @ViewInject(R.id.album_pic2)
-        ImageView album_pic2;
-        @ViewInject(R.id.album_pic3)
-        ImageView album_pic3;
-
-        ViewHolder3(View view){
-            x.view().inject(this,view);
-        }
-    }
+//    private class ViewHolder3{
+//        @ViewInject(R.id.album_text)
+//        TextView album_text;
+//        @ViewInject(R.id.album_pic1)
+//        ImageView album_pic1;
+//        @ViewInject(R.id.album_pic2)
+//        ImageView album_pic2;
+//        @ViewInject(R.id.album_pic3)
+//        ImageView album_pic3;
+//
+//        ViewHolder3(View view){
+//            x.view().inject(this,view);
+//        }
+//    }
     private class ViewHolder4{
         @ViewInject(R.id.vod_container_video)
         RelativeLayout vod_container_video;

@@ -37,6 +37,49 @@ public class ItemItFlagBean {
     }
 
     public static class DataBean {
+        public String msgCount;
+        public String refresh;
+        public String detailUrl;
+        public String liveDesc;
+        public String liveId;
+        public String liveImage;
+        public String liveTitle;
+        public String liveType;
+        public String liveUrl;
+        public String liveState;
+        public String liveDate;
+        public String width;
+        public String height;
+        public String liveRate;
+        public String msgFlag;
+        public String topicFlag;
+        public String interactFlag;
+        public String interactUrl;
+        public String vtype;
+        public String countFlag;
+        public String remark;
+        public String msgTag;
+        public String topicTag;
+        public String interactTag;
+        public String whichTag;
+        public String coverimg;
+        public String covertitle;
+        public int whichFlag;
+        /**
+         * icon :
+         */
+
+        public List<IconListBean> iconList;
+        /**
+         * height : 720
+         * width : 1280
+         * liveUrl : 47d73f11cf43ce9a5640249589a875bc
+         * liveTitle : 西昌发射中心和它的100次飞天
+         * liveImage : http://p1.img.cctvpic.com/photoworkspace/2016/11/23/2016112309554474033.jpg
+         * liveType : 3
+         * liveRate : 1
+         * livesort : 1
+         */
 
         public List<LiveListBean> liveList;
 
@@ -56,6 +99,28 @@ public class ItemItFlagBean {
             }
 
             return null;
+        }
+
+        public static class IconListBean {
+            public String icon;
+
+            public static IconListBean objectFromData(String str) {
+
+                return new Gson().fromJson(str, IconListBean.class);
+            }
+
+            public static IconListBean objectFromData(String str, String key) {
+
+                try {
+                    JSONObject jsonObject = new JSONObject(str);
+
+                    return new Gson().fromJson(jsonObject.getString(str), IconListBean.class);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                return null;
+            }
         }
 
         public static class LiveListBean {
@@ -101,7 +166,16 @@ public class ItemItFlagBean {
         public String msgId;
         public String liveUrl;
         public String rwImg;
+        public String urlDesc;
         public String msgImage;
+        /**
+         * num : 1
+         * photo_url : http://p1.img.cctvpic.com/photoworkspace/2016/11/23/2016112311321743730.jpg
+         * width : 626
+         * height : 352
+         */
+
+        public List<ImgListBean> imgList;
 
         public static MsgListBean objectFromData(String str) {
 
@@ -119,6 +193,31 @@ public class ItemItFlagBean {
             }
 
             return null;
+        }
+
+        public static class ImgListBean {
+            public String num;
+            public String photo_url;
+            public String width;
+            public String height;
+
+            public static ImgListBean objectFromData(String str) {
+
+                return new Gson().fromJson(str, ImgListBean.class);
+            }
+
+            public static ImgListBean objectFromData(String str, String key) {
+
+                try {
+                    JSONObject jsonObject = new JSONObject(str);
+
+                    return new Gson().fromJson(jsonObject.getString(str), ImgListBean.class);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                return null;
+            }
         }
     }
 }

@@ -128,9 +128,9 @@ public class OtherOfNewsFragment extends Fragment {
                     default:
                         intent = new Intent();
                         intent.setClass(getContext(), FocusItemArticleActivity.class);
+                        intent.putExtra("itemID",itemListBean1.itemID);
                         intent.putExtra("detailUrl",itemListBean1.detailUrl);
-                        intent.putExtra("type",itemListBean1.itemType);
-                        Log.i("Tag","detailUrl is "+itemListBean1.detailUrl );
+                        intent.putExtra("itemType",itemListBean1.itemType);
                         startActivity(intent);
                         break;
                 }

@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 import com.yangzhiyan.mycctv.R;
 import com.yangzhiyan.mycctv.activity.LoginActivity;
+import com.yangzhiyan.mycctv.activity.MyCollectActivity;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -73,6 +74,15 @@ public class UserFragment extends Fragment {
 
             user_pic.setImageResource(icons[i]);
             user_text.setText(titles[i]);
+
+            if (i==1){
+                itemview.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getContext(),MyCollectActivity.class));
+                    }
+                });
+            }
 
             if (i==2||i==3){
                 user_state.setVisibility(View.VISIBLE);

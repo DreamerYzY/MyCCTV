@@ -7,7 +7,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.google.gson.Gson;
 import com.sina.weibo.sdk.api.TextObject;
@@ -38,6 +40,12 @@ public class ItemItFlagActivity extends AppCompatActivity {
     TextView itflag_text;
     @ViewInject(R.id.itflag_recyclerView)
     RecyclerView itflag_recycleView;
+    @ViewInject(R.id.itflag_play)
+    ImageView itflag_play;
+    @ViewInject(R.id.itflag_container_other)
+    RelativeLayout itflag_container_other;
+    @ViewInject(R.id.itflag_video)
+    VideoView itflag_video;
 
     private String url;
 
@@ -81,6 +89,8 @@ public class ItemItFlagActivity extends AppCompatActivity {
                 iWeiboShareAPI.sendRequest(this,request);
                 break;
             case R.id.itflag_play:
+                itflag_container_other.setVisibility(View.GONE);
+                itflag_video.setVisibility(View.VISIBLE);
                 break;
         }
     }
@@ -117,6 +127,11 @@ public class ItemItFlagActivity extends AppCompatActivity {
 
     private void bindData(ItemItFlagBean itemItFlagBean1) {
         itemItFlagBean = itemItFlagBean1;
+        if (itemItFlagBean.data.liveUrl.equals("")){
+            itflag_play.setVisibility(View.GONE);
+        }else {
+            itflag_play.setVisibility(View.VISIBLE);
+        }
         itflag_text.setText(itemItFlagBean.data.liveList.get(0).liveTitle);
         String imgurl = itemItFlagBean.data.liveList.get(0).liveImage;
         if (!imgurl.isEmpty()){

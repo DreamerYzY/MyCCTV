@@ -134,7 +134,8 @@ public class TimeLineFragment extends Fragment {
                 Intent intent = new Intent();
                 intent.setClass(getContext(), FocusItemArticleActivity.class);
                 intent.putExtra("detailUrl",itemList.get(position-2).detailUrl);
-                intent.putExtra("type",itemList.get(position-2).itemType);
+                intent.putExtra("itemType",itemList.get(position-2).itemType);
+                intent.putExtra("itemID",itemList.get(position-2).itemID);
                 startActivity(intent);
             }
         });

@@ -166,8 +166,9 @@ public class FocusnewsOfNewsFragment extends Fragment {
                         intent = new Intent();
                         intent.setClass(getContext(), FocusItemArticleActivity.class);
                         intent.putExtra("detailUrl",itemListBean1.detailUrl);
-                        intent.putExtra("type",itemListBean1.itemType);
-                        Log.i("Tag","detailUrl is "+itemListBean1.detailUrl );
+                        intent.putExtra("itemType",itemListBean1.itemType);
+                        intent.putExtra("itemID",itemListBean1.itemID);
+                        intent.putExtra("itemTitle",itemListBean1.itemTitle);
                         startActivity(intent);
                         break;
                 }
@@ -219,12 +220,15 @@ public class FocusnewsOfNewsFragment extends Fragment {
         dots = new ImageView[focusnews.data.bigImg.size()];
         focusnews_viewpager_text.setText(focusnews.data.bigImg.get(0).itemTitle);
 
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(25,25);
+        params.setMargins(0,0,30,0);
+
         for (int i = 0; i < dots.length; i++) {
             dots[i] = new ImageView(getContext());
             dots[i].setImageResource(R.drawable.dot);
             dots[i].setEnabled(true);
+            dots[i].setLayoutParams(params);
             focusnews_lldots.addView(dots[i]);
-
             String imgurl = focusnews.data.bigImg.get(i).itemImage;
             ImageView imageView = new ImageView(getContext());
             if (!imgurl.isEmpty()){
