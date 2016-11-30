@@ -258,7 +258,8 @@ public class FocusnewsOfNewsFragment extends Fragment {
                             Intent intent = new Intent();
                             intent.setClass(getContext(), FocusItemArticleActivity.class);
                             intent.putExtra("detailUrl",focusnews.data.bigImg.get(finalI).detailUrl);
-                            intent.putExtra("type",focusnews.data.bigImg.get(finalI).itemType);
+                            intent.putExtra("itemType",focusnews.data.bigImg.get(finalI).itemType);
+                            intent.putExtra("itemID",focusnews.data.bigImg.get(finalI).itemID);
                             startActivity(intent);
                             break;
                     }

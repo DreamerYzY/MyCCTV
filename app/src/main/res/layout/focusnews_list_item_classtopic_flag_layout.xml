@@ -7,8 +7,8 @@
     <RelativeLayout
         android:id="@+id/classtopic_rl"
         android:layout_marginLeft="5dp"
-        android:layout_width="100dp"
-        android:layout_height="80dp">
+        android:layout_width="80dp"
+        android:layout_height="60dp">
         <ImageView
             android:id="@+id/classtopic_pic"
             android:src="@drawable/bg_default_item"
@@ -18,8 +18,8 @@
             android:id="@+id/pic_type"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
 
     </RelativeLayout>
     <RelativeLayout
@@ -27,13 +27,13 @@
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="60dp">
 
         <TextView
             android:id="@+id/classtopic_title"
             android:textColor="@android:color/black"
             android:textStyle="bold"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

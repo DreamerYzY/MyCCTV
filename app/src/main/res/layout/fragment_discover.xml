@@ -30,7 +30,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="240dp">
+                android:layout_height="190dp">
 
                 <ImageView
                     android:id="@+id/discover_pic"
@@ -95,12 +95,12 @@
                 <ImageView
                     android:layout_centerVertical="true"
                     android:src="@mipmap/icon_setting_search"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="40dp"
+                    android:layout_height="40dp" />
                 <TextView
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="80dp"
-                    android:textSize="20sp"
+                    android:layout_marginLeft="50dp"
+                    android:textSize="15sp"
                     android:text="搜索"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -109,7 +109,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
-                    android:layout_height="30dp" />
+                    android:layout_height="20dp" />
 
             </RelativeLayout>
             <RelativeLayout
@@ -122,12 +122,12 @@
                 <ImageView
                     android:layout_centerVertical="true"
                     android:src="@mipmap/icon_swipe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="40dp"
+                    android:layout_height="40dp" />
                 <TextView
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="80dp"
-                    android:textSize="20sp"
+                    android:layout_marginLeft="50dp"
+                    android:textSize="15sp"
                     android:text="扫一扫"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -136,7 +136,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
-                    android:layout_height="30dp" />
+                    android:layout_height="20dp" />
 
             </RelativeLayout>
 

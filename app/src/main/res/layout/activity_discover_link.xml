@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/activity_discover_link"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.yangzhiyan.mycctv.activity.DiscoverLinkActivity">
+
+    <RelativeLayout
+        android:id="@+id/item_rl"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/item_return"
+            android:src="@mipmap/base_header_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/item_close"
+            android:layout_toRightOf="@id/item_return"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_ad_close_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/item_share"
+            android:src="@mipmap/icon_detail_share"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <WebView
+        android:id="@+id/discover_webview"
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/item_setting"
+            android:layout_marginLeft="30dp"
+            android:src="@mipmap/icon_menu_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>

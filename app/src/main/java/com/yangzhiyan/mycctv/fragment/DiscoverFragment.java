@@ -1,6 +1,7 @@
 package com.yangzhiyan.mycctv.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -15,8 +16,10 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.yangzhiyan.mycctv.R;
+import com.yangzhiyan.mycctv.activity.DiscoverLinkActivity;
 import com.yangzhiyan.mycctv.adapter.DiscoverRecycleviewAdapter;
 import com.yangzhiyan.mycctv.been.Discover;
+import com.yangzhiyan.mycctv.interfaces.MyItemListener;
 import com.yangzhiyan.mycctv.utils.SpaceItemDecoration;
 
 import org.xutils.common.Callback;
@@ -27,7 +30,7 @@ import org.xutils.x;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DiscoverFragment extends Fragment {
+public class DiscoverFragment extends Fragment implements MyItemListener {
 
     @ViewInject(R.id.discover_pic)
     ImageView discover_pic;
@@ -60,6 +63,15 @@ public class DiscoverFragment extends Fragment {
         int space = 80;
         discover_recycleview.addItemDecoration(new SpaceItemDecoration(space));
         getData();
+        discover_pic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getContext(), DiscoverLinkActivity.class);
+                intent.putExtra("detailUrl",discover.data.bigImg.get(0).detailUrl);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
@@ -83,6 +95,7 @@ public class DiscoverFragment extends Fragment {
                         discover_recycleview.setLayoutManager(layoutManager);
                         adapter = new DiscoverRecycleviewAdapter(getContext(),discover.data.itemList);
                         discover_recycleview.setAdapter(adapter);
+                        adapter.setOnItemClickListener(DiscoverFragment.this);
 
                     }
 
@@ -104,4 +117,11 @@ public class DiscoverFragment extends Fragment {
 
     }
 
+    @Override
+    public void onItemClick(View view, int position) {
+        Intent intent = new Intent();
+        intent.setClass(getContext(),DiscoverLinkActivity.class);
+        intent.putExtra("detailUrl",discover.data.itemList.get(position).detailUrl);
+        startActivity(intent);
+    }
 }

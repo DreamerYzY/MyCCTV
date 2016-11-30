@@ -131,6 +131,7 @@ public class OtherOfNewsFragment extends Fragment {
                         intent.putExtra("itemID",itemListBean1.itemID);
                         intent.putExtra("detailUrl",itemListBean1.detailUrl);
                         intent.putExtra("itemType",itemListBean1.itemType);
+                        intent.putExtra("itemTitle",itemListBean1.itemTitle);
                         startActivity(intent);
                         break;
                 }
@@ -200,7 +201,9 @@ public class OtherOfNewsFragment extends Fragment {
                         Intent intent = new Intent();
                         intent.setClass(getContext(), FocusItemArticleActivity.class);
                         intent.putExtra("detailUrl",otherBean.data.bigImg.get(0).detailUrl);
-                        intent.putExtra("type",otherBean.data.bigImg.get(0).itemType);
+                        intent.putExtra("itemType",otherBean.data.bigImg.get(0).itemType);
+                        intent.putExtra("itemID",otherBean.data.bigImg.get(0).itemID);
+                        intent.putExtra("itemTitle",otherBean.data.bigImg.get(0).itemTitle);
                         startActivity(intent);
                         break;
                 }
