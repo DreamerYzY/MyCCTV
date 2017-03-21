@@ -217,7 +217,7 @@ public class FocusnewsOfNewsFragment extends Fragment {
         listAdapter = new FocusnewsListAdapter(getContext(), itemListBeen);
         focusnews_pulllistview.setAdapter(listAdapter);
 
-        dots = new ImageView[focusnews.data.bigImg.size()];
+        dots = new ImageView[focusnews.data.bigImg.size()-1];
         focusnews_viewpager_text.setText(focusnews.data.bigImg.get(0).itemTitle);
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(25,25);

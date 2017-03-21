@@ -31,9 +31,8 @@ public class NewsFragment extends Fragment {
     TabLayout news_tab;
     @ViewInject(R.id.news_viewpager)
     ViewPager news_viewpager;
-    private News news;
-    private String[] tabs;
-    private String dataurl = "http://m.news.cntv.cn/special/json/fenleiv2/index.json";
+    private String[] tabs = {"要闻","直播","V观","夜读","国际","体育","看台湾","军事",
+            "评论","财经","社会","地震"};
     private List<Fragment> fragmentList;
     private NewsViewPagerAdapter adapter;
 
@@ -49,49 +48,15 @@ public class NewsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_news, container, false);
         x.view().inject(this, view);
-        getTab();
         fragmentList = new ArrayList<>();
+        for (int i=0;i<tabs.length;i++){
+            news_tab.addTab(news_tab.newTab().setText(tabs[i]));
+        }
+        newFragment();
         news_tab.setupWithViewPager(news_viewpager);
         return view;
     }
 
-    private void getTab() {
-        RequestParams requestParams = new RequestParams(dataurl);
-
-        x.http().get(requestParams,
-                new Callback.CommonCallback<String>() {
-                    @Override
-                    public void onSuccess(String result) {
-                        Gson gson = new Gson();
-                        news = gson.fromJson(result, News.class);
-                        bindTab(news);
-                    }
-
-                    @Override
-                    public void onError(Throwable ex, boolean isOnCallback) {
-                        ex.printStackTrace();
-                    }
-
-                    @Override
-                    public void onCancelled(CancelledException cex) {
-                        cex.printStackTrace();
-                    }
-
-                    @Override
-                    public void onFinished() {
-
-                    }
-                });
-    }
-
-    private void bindTab(News news1) {
-        news = news1;
-        tabs = new String[news.data.size()];
-        for (int i = 0; i < news.data.size(); i++) {
-            tabs[i] = news.data.get(i).title;
-        }
-        newFragment();
-    }
 
     private void newFragment() {
         Bundle bundle;
